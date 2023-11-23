@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Footer from './components/Forms/Footer';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,6 +12,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App />
+      
+      {/* FOOTER PENDIENTE, TENGO QUE AJUSTAR PARA QUE NO MOLESTE LOS DEMAS FORMULARIOS.
+      TAMBIEN NECESITO AVERIGUAR LA UBICACION DE LA ETIQUETA.
+      POR ULTIMO EDITAR CON MI INFORMACION */}
+      {/* <Footer /> */}
+
   </React.StrictMode>
 );
 
