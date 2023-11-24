@@ -47,25 +47,25 @@ const Squad = ({ datosNav, func }: any) => {
             alert('ESTE HEROE AUN NO FUE OBTENIDO');
         }
     }
-    const funcionCargar = () => {
-        setListaEscuadron(datosNav.ESCUADRON);
-        // ARMANDO LA LISTA DE HEROES EN LA COLECCION
-        let listaAux = [];
-        for (let index = 1; index < 25; index++) {
-            const nivelHeroeActual = parseInt(datosNav["HEROE" + index]["NIVEL"]);
-            let boolAux = false;
-            if (0 < nivelHeroeActual) {
-                boolAux = true;
-            } else {
-                boolAux = false;
-            }
-            // ESTO SOLO ES ORIENTATIVO. PARA CARGAR IMAGENES VOY A NECESITAR UN BOOL
-            listaAux.push([boolAux.toString(), index])
-            // listaAux.push([boolAux, index])
-        };
-        setListaColecc(listaAux);
-    };
     useEffect(() => {
+        const funcionCargar = () => {
+            setListaEscuadron(datosNav.ESCUADRON);
+            // ARMANDO LA LISTA DE HEROES EN LA COLECCION
+            let listaAux = [];
+            for (let index = 1; index < 25; index++) {
+                const nivelHeroeActual = parseInt(datosNav["HEROE" + index]["NIVEL"]);
+                let boolAux = false;
+                if (0 < nivelHeroeActual) {
+                    boolAux = true;
+                } else {
+                    boolAux = false;
+                }
+                // ESTO SOLO ES ORIENTATIVO. PARA CARGAR IMAGENES VOY A NECESITAR UN BOOL
+                listaAux.push([boolAux.toString(), index])
+                // listaAux.push([boolAux, index])
+            };
+            setListaColecc(listaAux);
+        };
         funcionCargar()
     // });
     // CORRECCION PARA EL DEPLOY EN NETLIFY

@@ -27,15 +27,6 @@ const Tabern = ({ datosNav, func }: any) => {
         })
         .catch(err => console.log(err));
     }
-    const funcionCargar = async () => {
-        await RPGService.tavern({NOMBRE: datosNav["NOMBRE"]})
-        .then(result => {
-            if(result.data.message === "Success"){
-                setLista(result.data.listaHeroe);
-            }
-        })
-        .catch(err => console.log(err));
-    };
     function BotonCompra(props: any) {
         // CREA UN BOTON ASIGNANDO EL INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION handleClick
         const nombreHeroe = props.nombre;
@@ -59,6 +50,18 @@ const Tabern = ({ datosNav, func }: any) => {
         }
     };
     useEffect(() => {
+        // PARA EVITAR LA ADVERTENCIA EN EL build,
+            // SE RECOMIENDA PONER LA DECLARACION DE LA FUNCION, DENTRO DEL MISMO useEffect.
+        // ESTO ES VALIDO CUANDO TAL FUNCION SE USA UNICAMENTE EN EL useEffect.
+        const funcionCargar = async () => {
+            await RPGService.tavern({NOMBRE: datosNav["NOMBRE"]})
+            .then(result => {
+                if(result.data.message === "Success"){
+                    setLista(result.data.listaHeroe);
+                }
+            })
+            .catch(err => console.log(err));
+        };
         funcionCargar()
     // });
     // CORRECCION PARA EL DEPLOY EN NETLIFY
