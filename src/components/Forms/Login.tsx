@@ -3,7 +3,8 @@
 // INCLUYE EJEMPLO DE TRASPASO DE PROPS HIJO A PADRE.
 
 // import React from 'react'
-import {ChangeEvent, FormEvent, useState, useEffect} from "react";
+// import {ChangeEvent, FormEvent, useState, useEffect} from "react";
+import { FormEvent, useState } from "react";
 
 import * as RPGService from "./RPGService"
 import { useNavigate, Link } from "react-router-dom"

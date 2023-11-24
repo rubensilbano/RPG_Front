@@ -1,9 +1,9 @@
 // ALTA DE USUARIOS
 
 // import React from 'react'
-import {ChangeEvent, FormEvent, useState, useEffect} from "react";
-import * as RPG from "./RPGService"
-import { useNavigate, Link } from "react-router-dom"
+// import {ChangeEvent, FormEvent, useState, useEffect} from "react";
+// import * as RPG from "./RPGService"
+import { Link } from "react-router-dom"
 // import Navbar2 from '../Navbar/Navbar2';
 import Navbar from '../Navbar/Navbar';
 // import { Jugador } from './Jugador'
