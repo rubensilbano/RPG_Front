@@ -1,9 +1,10 @@
 // import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { Link } from "react-router-dom";
+// import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const Navbar = ({datosNav}) => {
-  const [cantHeroes, setCantHeroes] = useState(0);
+  // const [cantHeroes, setCantHeroes] = useState(0);
   useEffect(() => {
     // AHORA LA CANTIDAD DE HEROES VA A SER UN VALOR EN EL REGISTRO.
       // ESTO DEBIDO A QUE ME PARECE INCORRECTO REALIZAR ESTA SERIE DE CALCULOS EN EL FRONTEND Y BACKEND.
@@ -19,7 +20,9 @@ const Navbar = ({datosNav}) => {
     };
     setCantHeroes(cantidad);
     */
-  }, []);
+  });
+  // CORRECCION PARA EL DEPLOY EN NETLIFY
+  // }, []);
   
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

@@ -13,7 +13,7 @@ const Camp = ({ datosNav, datosZona, func, getResultado }: any) => {
             // Y REDIRIGE AL FORMULARIO RESULTADO
         await RPGService.battle({NOMBRE: datosNav.NOMBRE, zone: datosZona[0], route: datosZona[1], camp: parseInt(event.target.className) - 1})
         .then(result => {
-            if (result.data.message == "RESULTADOS"){
+            if (result.data.message === "RESULTADOS"){
                 func(result.data.datosJugador)
                 // AHORA TENGO QUE MOSTRAR LOS RESULTADOS EN EL FORMULARIO RESULTADOS
                 getResultado(result.data.lisrespuesta)
@@ -39,7 +39,7 @@ const Camp = ({ datosNav, datosZona, func, getResultado }: any) => {
         let nombre = "Campamento " + indice;
         const indiceReal = indice - 1
         let elemento = <h4>{nombre}</h4>;
-        if (datosNav.PROXCAMP == indiceReal) {
+        if (datosNav.PROXCAMP === indiceReal) {
             elemento = <BotonEleccion indice={indice} nombre={nombre}/>
         } else if (datosNav.PROXCAMP < indiceReal) {
             nombre += " BLOQUEADO";

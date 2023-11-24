@@ -16,7 +16,7 @@ const Squad = ({ datosNav, func }: any) => {
     const navigate = useNavigate();
     const quitarHeroeEscuadron = (event: any) => {
         // QUITA AL HEROE DE LA LISTA ESCUADRON.
-        const buscarIndice = (element: number) => element == event.target.className;
+        const buscarIndice = (element: number) => element === event.target.className;
         const index = listaHeroesEscuadron.findIndex(buscarIndice);
         let arrayAux = listaHeroesEscuadron
         arrayAux[index] = 0
@@ -26,15 +26,15 @@ const Squad = ({ datosNav, func }: any) => {
     const alternarHeroeColeccion = (event: any) => {
         // ALTERNA ENTRE AGREGAR/QUITAR AL HEROE DE LA LISTA ESCUADRON.
         const elementoHeroe = event.target.value.split(",");
-        if (elementoHeroe[0] == "true") {
+        if (elementoHeroe[0] === "true") {
             // REVISANDO SI HAY RANURAS VACIAS PARA AGREGAR HEROE
-            const buscarIndice0 = (element: number) => element == 0;
+            const buscarIndice0 = (element: number) => element === 0;
             const index0 = listaHeroesEscuadron.findIndex(buscarIndice0);
             if (-1 < index0) {
                 // AGREGANDO HEROE AL ESCUADRON
-                const buscarIndiceHeroe = (element: number) => element == elementoHeroe[1];
+                const buscarIndiceHeroe = (element: number) => element === elementoHeroe[1];
                 const indexHeroe = listaHeroesEscuadron.findIndex(buscarIndiceHeroe);
-                if (indexHeroe == -1) {
+                if (indexHeroe === -1) {
                     let arrayAux = listaHeroesEscuadron
                     arrayAux[index0] = parseInt(elementoHeroe[1])
                     setListaEscuadron(arrayAux)
@@ -67,7 +67,9 @@ const Squad = ({ datosNav, func }: any) => {
     };
     useEffect(() => {
         funcionCargar()
-    }, []);
+    });
+    // CORRECCION PARA EL DEPLOY EN NETLIFY
+    // }, []);
     function BotonEscuadron(props: any) {
         // CREA UN BOTON ASIGNANDO EL INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION quitarHeroeEscuadron
         const indice = props.indice;

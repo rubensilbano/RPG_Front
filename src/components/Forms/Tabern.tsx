@@ -60,7 +60,9 @@ const Tabern = ({ datosNav, func }: any) => {
     };
     useEffect(() => {
         funcionCargar()
-    }, []);
+    });
+    // CORRECCION PARA EL DEPLOY EN NETLIFY
+    // }, []);
     const handleClickReturn = () => {
         navigate('/base');
     }
