@@ -39,7 +39,7 @@ const Camp = ({ datosNav, datosZona, func, getResultado }: any) => {
         let nombre = "Campamento " + indice;
         const indiceReal = indice - 1
         let elemento = <h4>{nombre}</h4>;
-        if (datosNav.PROXCAMP === indiceReal) {
+        if (parseInt(datosNav.PROXCAMP) === indiceReal) {
             elemento = <BotonEleccion indice={indice} nombre={nombre}/>
         } else if (datosNav.PROXCAMP < indiceReal) {
             nombre += " BLOQUEADO";

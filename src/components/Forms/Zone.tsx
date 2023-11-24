@@ -27,7 +27,7 @@ const Zone = ({ datosNav, rutasGeneradas, zonaRutaElegida, func }: any) => {
         })
         .catch(err => console.log(err));
     }
-    const handleClickContinuar =  (event: any) => {
+    const handleClickContinuar = (event: any) => {
         // ENVIA LOS DATOS ZONARUTA AL App, Y REDIRIGE AL FORMULARIO CAMPAMENTOS
         zonaRutaElegida(datosNav.ZONARUTA)
         navigate('/camp');

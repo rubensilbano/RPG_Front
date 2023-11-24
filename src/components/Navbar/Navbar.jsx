@@ -3,7 +3,7 @@
 // import { useState, useEffect } from "react";
 import { useEffect } from "react";
 
-const Navbar = ({datosNav}) => {
+const Navbar = ({ datosNav }) => {
   // const [cantHeroes, setCantHeroes] = useState(0);
   useEffect(() => {
     // AHORA LA CANTIDAD DE HEROES VA A SER UN VALOR EN EL REGISTRO.
@@ -20,9 +20,9 @@ const Navbar = ({datosNav}) => {
     };
     setCantHeroes(cantidad);
     */
-  });
+  // });
   // CORRECCION PARA EL DEPLOY EN NETLIFY
-  // }, []);
+  }, [datosNav]);
   
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
