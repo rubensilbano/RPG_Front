@@ -18,6 +18,10 @@ const Camp = ({ datosNav, datosZona, func, getResultado }: any) => {
                 // AHORA TENGO QUE MOSTRAR LOS RESULTADOS EN EL FORMULARIO RESULTADOS
                 getResultado(result.data.lisrespuesta)
                 navigate('/result');
+            } else if (result.data.message === "SIN ENEMIGOS") {
+                // EVALUO Y SALVO EL HIPOTETICO CASO EN QUE SE INTENTO COMBATIR CONTRA UNA LISTA SIN ENEMIGOS
+                func(result.data.datosJugador)
+                navigate('/zone');
             } else {
                 alert(result.data.message);
             }
