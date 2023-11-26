@@ -105,7 +105,7 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         // CREA UN BOTON ASIGNANDO VALIDACION E INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION alternarHeroeColeccion
         const indice = props.indice;
         return <button type="submit"
-        className={indice[0] + ", " + indice[1] + ", - " + indice[2] + ", _Nivel:" + indice[3]}
+        className={indice[0].toString() + ", " + indice[1].toString() + ", - " + indice[2].toString() + ", _Nivel:" + indice[3].toString()}
         value={indice}
         onClick={alternarHeroeColeccion}
         >{indice}</button>;
@@ -139,6 +139,9 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
                             return <BotonEscuadron indice={indiceHeroe} />
                         })}
                     </div>
+                    <br />
+                    <br />
+                    <br />
                     {/* true REPRESENTA QUE EL HEROE FUE OBTENIDO, Y PUEDE AGREGARSE AL ESCUADRON */}
                     <div className="row">
                         {listaHeroesColeccion.map((indiceHeroe: []) => {
