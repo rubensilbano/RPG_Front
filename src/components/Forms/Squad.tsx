@@ -67,7 +67,7 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         funcionCargar()
     // });
     // CORRECCION PARA EL DEPLOY EN NETLIFY
-    }, [datosNav]);
+    }, [datosNav, nombresHeroes]);
     function BotonEscuadron(props: any) {
         // CREA UN BOTON ASIGNANDO EL INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION quitarHeroeEscuadron
         const indice = props.indice;
