@@ -9,7 +9,7 @@ import { FormEvent, useState } from "react";
 import * as RPGService from "./RPGService"
 import { useNavigate, Link } from "react-router-dom"
 
-const Login = ({ func }: any) => {
+const Login = ({ func, saveNombresHeroes }: any) => {
     const [NOMBRE, setNombre] = useState("");
     const [CLAVE, setClave] = useState("");
     const navigate = useNavigate();
@@ -19,6 +19,9 @@ const Login = ({ func }: any) => {
         .then(result => {
             if(result.data.message === "Success"){
                 func(result.data.datosUsuario)
+
+                saveNombresHeroes(result.data.nombresHeroes)
+
                 navigate('/base');
             }
             else{

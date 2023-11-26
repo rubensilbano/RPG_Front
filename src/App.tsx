@@ -33,9 +33,13 @@ function App() {
   const zonaRutaElegida = (respuesta: [number, number]) => {
     setZonaRuta(respuesta);
   }
-  const [resultado, setresultado] = useState<[any]>();
+  const [resultado, setResultado] = useState<[any]>();
   const getResultado = (respuesta: [any]) => {
-    setresultado(respuesta);
+    setResultado(respuesta);
+  }
+  const [nombresHeroes, setNombres] = useState<[string]>();
+  const saveNombresHeroes = (respuesta: [string]) => {
+    setNombres(respuesta);
   }
   
   return (
@@ -62,6 +66,7 @@ function App() {
           {/* NECESITO RECIBIR UN STRING DESDE Login, Y CON EL ACTUALIZAR USANDO setUser */}
           <Route path='/' element={<Login
           func={hijoAPadre}
+          saveNombresHeroes={saveNombresHeroes}
           />} />
           <Route path='/base' element={<Base
           datosNav={datosUsuario}
@@ -73,6 +78,7 @@ function App() {
           <Route path='/squad' element={<Squad
           datosNav={datosUsuario}
           func={hijoAPadre}
+          nombresHeroes={nombresHeroes}
           />} />
           <Route path='/zone' element={<Zone
           datosNav={datosUsuario}
@@ -96,8 +102,8 @@ function App() {
           <Route path='/result' element={<Result
           datosNav={datosUsuario}
           resultado={resultado}
-          func={hijoAPadre}
-          getResultado={getResultado}
+          // func={hijoAPadre}
+          // getResultado={getResultado}
           />} />
 
           {/* <Route path='/new-video' element={<VideoForm/>} />

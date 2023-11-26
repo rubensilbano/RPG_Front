@@ -10,7 +10,7 @@ import Navbar from '../Navbar/Navbar';
 
 // DECLARARLAS ASI PROVOCA UN FALLO, QUE IMPIDE EJECUTAR func
 // const Tabern = ({ datosNav }: any, { func }: any) => {
-const Squad = ({ datosNav, func }: any) => {
+const Squad = ({ datosNav, func, nombresHeroes }: any) => {
     const [listaHeroesEscuadron, setListaEscuadron] = useState<any>([]);
     const [listaHeroesColeccion, setListaColecc] = useState<any>([]);
     const navigate = useNavigate();
@@ -57,11 +57,9 @@ const Squad = ({ datosNav, func }: any) => {
                 let boolAux = false;
                 if (0 < nivelHeroeActual) {
                     boolAux = true;
-                } else {
-                    boolAux = false;
                 }
                 // ESTO SOLO ES ORIENTATIVO. PARA CARGAR IMAGENES VOY A NECESITAR UN BOOL
-                listaAux.push([boolAux.toString(), index])
+                listaAux.push([boolAux.toString(), index, nombresHeroes[index - 1], nivelHeroeActual])
                 // listaAux.push([boolAux, index])
             };
             setListaColecc(listaAux);
@@ -74,7 +72,8 @@ const Squad = ({ datosNav, func }: any) => {
         // CREA UN BOTON ASIGNANDO EL INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION quitarHeroeEscuadron
         const indice = props.indice;
         return <button type="submit"
-        className={indice}
+        // className={indice}
+        className={indice[0] + ", " + indice[1] + ", " + indice[2] + ", " + indice[3]}
         onClick={quitarHeroeEscuadron}
         >{indice}</button>;
     };
@@ -82,7 +81,7 @@ const Squad = ({ datosNav, func }: any) => {
         // CREA UN BOTON ASIGNANDO VALIDACION E INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION alternarHeroeColeccion
         const indice = props.indice;
         return <button type="submit"
-        className={indice[0] + ", " + indice[1]}
+        className={indice[0] + ", " + indice[1] + ", " + indice[2] + ", " + indice[3]}
         value={indice}
         onClick={alternarHeroeColeccion}
         >{indice}</button>;
