@@ -16,10 +16,12 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
     const navigate = useNavigate();
     const quitarHeroeEscuadron = (event: any) => {
         // QUITA AL HEROE DE LA LISTA ESCUADRON.
-        const buscarIndice = (element: number) => element === parseInt(event.target.className);
+        // const buscarIndice = (element: number) => element === parseInt(event.target.value);
+        const buscarIndice = (element: [number, string]) => element[0] === parseInt(event.target.value);
         const index = listaHeroesEscuadron.findIndex(buscarIndice);
         let arrayAux = listaHeroesEscuadron
-        arrayAux[index] = 0
+        // arrayAux[index] = 0
+        arrayAux[index] = [0, "Ranura VACIA"]
         setListaEscuadron(arrayAux)
         navigate('/squad');
     }
@@ -28,15 +30,20 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         const elementoHeroe = event.target.value.split(",");
         if (elementoHeroe[0] === "true") {
             // REVISANDO SI HAY RANURAS VACIAS PARA AGREGAR HEROE
-            const buscarIndice0 = (element: number) => element === 0;
+            // const buscarIndice0 = (element: number) => element === 0;
+            const buscarIndice0 = (element: [number, string]) => element[0] === 0;
             const index0 = listaHeroesEscuadron.findIndex(buscarIndice0);
             if (-1 < index0) {
                 // AGREGANDO HEROE AL ESCUADRON
-                const buscarIndiceHeroe = (element: number) => element === parseInt(elementoHeroe[1]);
+                // const buscarIndiceHeroe = (element: number) => element === parseInt(elementoHeroe[1]);
+                const buscarIndiceHeroe = (element: [number, string]) => element[0] === parseInt(elementoHeroe[1]);
                 const indexHeroe = listaHeroesEscuadron.findIndex(buscarIndiceHeroe);
                 if (indexHeroe === -1) {
+
                     let arrayAux = listaHeroesEscuadron
-                    arrayAux[index0] = parseInt(elementoHeroe[1])
+                    // arrayAux[index0] = parseInt(elementoHeroe[1])
+                    arrayAux[index0] = [parseInt(elementoHeroe[1]), elementoHeroe[2], elementoHeroe[3]]
+
                     setListaEscuadron(arrayAux)
                     navigate('/squad');
                 }
@@ -49,7 +56,23 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
     }
     useEffect(() => {
         const funcionCargar = () => {
-            setListaEscuadron(datosNav.ESCUADRON);
+            // ARMANDO LA LISTA DE HEROES EN EL ESCUADRON
+            // INICIALMENTE SOLO COPIABA LA LISTA ESCUADRON, PERO AHORA QUIERO MOSTRAR NOMBRE Y NIVEL
+            // setListaEscuadron(datosNav.ESCUADRON);
+            let listaAuxEscuadron = [];
+            for (let i = 0; i < datosNav.ESCUADRON.length; i++) {
+                let listaAuxiliar = [];
+                listaAuxiliar.push(datosNav.ESCUADRON[i])
+                if ( 0 < datosNav.ESCUADRON[i]) {
+                    listaAuxiliar.push(nombresHeroes[i - 1])
+                    const nivelHeroeActual = parseInt(datosNav["HEROE" + datosNav.ESCUADRON[i]]["NIVEL"]);
+                    listaAuxiliar.push(nivelHeroeActual)
+                } else {
+                    listaAuxiliar.push("Ranura VACIA")
+                }
+                listaAuxEscuadron.push(listaAuxiliar)
+            }
+            setListaEscuadron(listaAuxEscuadron);
             // ARMANDO LA LISTA DE HEROES EN LA COLECCION
             let listaAux = [];
             for (let index = 1; index < 25; index++) {
@@ -74,6 +97,7 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         return <button type="submit"
         // className={indice}
         className={indice[0] + ", " + indice[1] + ", " + indice[2] + ", " + indice[3]}
+        value={indice}
         onClick={quitarHeroeEscuadron}
         >{indice}</button>;
     };
@@ -81,7 +105,7 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         // CREA UN BOTON ASIGNANDO VALIDACION E INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION alternarHeroeColeccion
         const indice = props.indice;
         return <button type="submit"
-        className={indice[0] + ", " + indice[1] + ", " + indice[2] + ", " + indice[3]}
+        className={indice[0] + ", " + indice[1] + ", - " + indice[2] + ", _Nivel:" + indice[3]}
         value={indice}
         onClick={alternarHeroeColeccion}
         >{indice}</button>;
