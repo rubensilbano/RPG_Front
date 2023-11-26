@@ -19,6 +19,9 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         // const buscarIndice = (element: number) => element === parseInt(event.target.value);
         const buscarIndice = (element: [number, string]) => element[0] === parseInt(event.target.value);
         const index = listaHeroesEscuadron.findIndex(buscarIndice);
+        
+        console.log(index)
+
         let arrayAux = listaHeroesEscuadron
         // arrayAux[index] = 0
         arrayAux[index] = [0, "Ranura VACIA"]
@@ -27,7 +30,7 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
     }
     const alternarHeroeColeccion = (event: any) => {
         // ALTERNA ENTRE AGREGAR/QUITAR AL HEROE DE LA LISTA ESCUADRON.
-        const elementoHeroe = event.target.value.split(",");
+        const elementoHeroe = event.target.value.split(", ");
         if (elementoHeroe[0] === "true") {
             // REVISANDO SI HAY RANURAS VACIAS PARA AGREGAR HEROE
             // const buscarIndice0 = (element: number) => element === 0;
@@ -64,11 +67,12 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
                 let listaAuxiliar = [];
                 listaAuxiliar.push(datosNav.ESCUADRON[i])
                 if ( 0 < datosNav.ESCUADRON[i]) {
-                    listaAuxiliar.push(nombresHeroes[i - 1])
+                    listaAuxiliar.push(nombresHeroes[datosNav.ESCUADRON[i] - 1])
                     const nivelHeroeActual = parseInt(datosNav["HEROE" + datosNav.ESCUADRON[i]]["NIVEL"]);
                     listaAuxiliar.push(nivelHeroeActual)
                 } else {
                     listaAuxiliar.push("Ranura VACIA")
+                    listaAuxiliar.push("")
                 }
                 listaAuxEscuadron.push(listaAuxiliar)
             }
@@ -94,25 +98,34 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
     function BotonEscuadron(props: any) {
         // CREA UN BOTON ASIGNANDO EL INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION quitarHeroeEscuadron
         const indice = props.indice;
+        let palabra = ""
+        if (0 < indice[0]) {
+            palabra = indice[0] + ", " + indice[1] + ", Nivel:" + indice[2]
+        } else {
+            palabra = "RANURA VACIA"
+        }
         return <button type="submit"
         // className={indice}
-        className={indice[0] + ", " + indice[1] + ", " + indice[2] + ", " + indice[3]}
         value={indice}
         onClick={quitarHeroeEscuadron}
-        >{indice}</button>;
+        >{palabra}</button>;
     };
     function BotonColeccion(props: any) {
         // CREA UN BOTON ASIGNANDO VALIDACION E INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION alternarHeroeColeccion
         const indice = props.indice;
+        const palabra = indice[0] + ", " + indice[1] + ", - " + indice[2] + ", Nivel:" + indice[3]
         return <button type="submit"
-        className={indice[0].toString() + ", " + indice[1].toString() + ", - " + indice[2].toString() + ", _Nivel:" + indice[3].toString()}
-        value={indice}
+        value={palabra}
         onClick={alternarHeroeColeccion}
-        >{indice}</button>;
+        >{palabra}</button>;
     };
     const handleClick = async (e: any) => {
         // ENVIA LA LISTA DE UNIDADES AL BACKEND, ESTE VALIDA LA LISTA PARA GUARDARLA COMO ESCUADRON
-        await RPGService.setSquad({NOMBRE: datosNav.NOMBRE, ESCUADRON: listaHeroesEscuadron})
+        let listaEscuadronGuardar = [];
+        for (let i = 0; i < listaHeroesEscuadron.length; i++) {
+            listaEscuadronGuardar.push(listaHeroesEscuadron[i][0])
+        }
+        await RPGService.setSquad({NOMBRE: datosNav.NOMBRE, ESCUADRON: listaEscuadronGuardar})
         .then(result => {
             if (result.data.message === "ESCUADRON GUARDADO EXITOSAMENTE!!!"){
                 func(result.data.datosJugador)
@@ -140,14 +153,13 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
                         })}
                     </div>
                     <br />
-                    <br />
-                    <br />
                     {/* true REPRESENTA QUE EL HEROE FUE OBTENIDO, Y PUEDE AGREGARSE AL ESCUADRON */}
                     <div className="row">
                         {listaHeroesColeccion.map((indiceHeroe: []) => {
                             return <BotonColeccion indice={indiceHeroe} />
                         })}
                     </div>
+                    <br />
                     <button type="submit" onClick={handleClick}>Guardar escuadron</button>
                 </div>
             </div>
