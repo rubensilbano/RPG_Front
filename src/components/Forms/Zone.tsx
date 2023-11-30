@@ -9,7 +9,8 @@ const Zone = ({ datosNav, rutasGeneradas, zonaRutaElegida, func }: any) => {
     const navigate = useNavigate();
     const handleClick = async (event: any) => {
         // ENVIA EL INDICE DE ZONA AL BACKEND PARA QUE SORTEE LAS RUTAS, Y REDIRIGE AL FORMULARIO RUTAS
-        await RPGService.zone({NOMBRE: datosNav.NOMBRE, id: event.target.className})
+        const nombre = sessionStorage.getItem("Usuario")
+        await RPGService.zone({NOMBRE: nombre, id: event.target.className})
         .then(result => {
             if (result.data.message === "RUTAS GENERADAS"){
                 func(result.data.datosJugador)

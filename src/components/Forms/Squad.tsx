@@ -19,9 +19,6 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         // const buscarIndice = (element: number) => element === parseInt(event.target.value);
         const buscarIndice = (element: [number, string]) => element[0] === parseInt(event.target.value);
         const index = listaHeroesEscuadron.findIndex(buscarIndice);
-        
-        console.log(index)
-
         let arrayAux = listaHeroesEscuadron
         // arrayAux[index] = 0
         arrayAux[index] = [0, "Ranura VACIA"]
@@ -125,7 +122,8 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         for (let i = 0; i < listaHeroesEscuadron.length; i++) {
             listaEscuadronGuardar.push(listaHeroesEscuadron[i][0])
         }
-        await RPGService.setSquad({NOMBRE: datosNav.NOMBRE, ESCUADRON: listaEscuadronGuardar})
+        const nombre = sessionStorage.getItem("Usuario")
+        await RPGService.setSquad({NOMBRE: nombre, ESCUADRON: listaEscuadronGuardar})
         .then(result => {
             if (result.data.message === "ESCUADRON GUARDADO EXITOSAMENTE!!!"){
                 func(result.data.datosJugador)

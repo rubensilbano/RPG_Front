@@ -66,10 +66,11 @@ function App() {
           {/* NECESITO RECIBIR UN STRING DESDE Login, Y CON EL ACTUALIZAR USANDO setUser */}
           <Route path='/' element={<Login
           func={hijoAPadre}
-          saveNombresHeroes={saveNombresHeroes}
+          // saveNombresHeroes={saveNombresHeroes}
           />} />
           <Route path='/base' element={<Base
           datosNav={datosUsuario}
+          saveNombresHeroes={saveNombresHeroes}
           />} />
           <Route path='/tavern' element={<Tabern
           datosNav={datosUsuario}

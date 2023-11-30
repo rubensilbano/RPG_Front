@@ -5,9 +5,9 @@ import axios from 'axios'
 
 // SOLO ES UNA STRING CON LA RUTA, PARA DESPUES CONCATENAR
     // ESTA RUTA DEBE COINCIDIR CON EL PUERTO QUE DECLARAMOS EN EL BACKEND.
-// const API = 'http://127.0.0.1:4000'
+const API = 'http://127.0.0.1:4000'
 // ESTA ES LA RUTA QUE SE USO EN EL DEPLOY PARA RAILWAY
-const API = 'https://rpgback-production.up.railway.app'
+// const API = 'https://rpgback-production.up.railway.app'
 
 /*
 export const getVideos = async() => {
@@ -21,8 +21,8 @@ export const createPlayer = async (objeto: any) => {
 export const login = async (objeto: any) => {
     return await axios.post(`${API}/login`, objeto)
 }
-export const tavern = async (objeto: any) => {
-    return await axios.post(`${API}/tavern`, objeto)
+export const getHeroNames = async (objeto: any) => {
+    return await axios.post(`${API}/getHeroNames`, objeto)
 }
 export const buyHero = async (objeto: any) => {
     return await axios.post(`${API}/buyHero`, objeto)

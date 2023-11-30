@@ -14,7 +14,8 @@ const Tabern = ({ datosNav, func }: any) => {
     const navigate = useNavigate();
     const handleClick = async (event: any) => {
         // HACE UN PEDIDO DE COMPRA AL BACKEND, ENVIANDO EL NOMBRE DE JUGADOR E INDICE DE HEROE
-        await RPGService.buyHero({NOMBRE: datosNav.NOMBRE, ID: event.target.className})
+        const nombre = sessionStorage.getItem("Usuario")
+        await RPGService.buyHero({NOMBRE: nombre, ID: event.target.className})
         .then(result => {
             if (result.data.message === "HEROE COMPRADO!!!"){
                 func(result.data.datosJugador)
@@ -54,7 +55,8 @@ const Tabern = ({ datosNav, func }: any) => {
             // SE RECOMIENDA PONER LA DECLARACION DE LA FUNCION, DENTRO DEL MISMO useEffect.
         // ESTO ES VALIDO CUANDO TAL FUNCION SE USA UNICAMENTE EN EL useEffect.
         const funcionCargar = async () => {
-            await RPGService.tavern({NOMBRE: datosNav["NOMBRE"]})
+            const nombre = sessionStorage.getItem("Usuario")
+            await RPGService.getHeroNames({NOMBRE: nombre})
             .then(result => {
                 if(result.data.message === "Success"){
                     setLista(result.data.listaHeroe);

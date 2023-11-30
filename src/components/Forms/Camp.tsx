@@ -11,7 +11,8 @@ const Camp = ({ datosNav, datosZona, func, getResultado }: any) => {
     const handleClick = async (event: any) => {
         // ENVIA EL INDICE DE CAMPAMENTO AL BACKEND PARA QUE EJECUTE UN COMBATE
             // Y REDIRIGE AL FORMULARIO RESULTADO
-        await RPGService.battle({NOMBRE: datosNav.NOMBRE, zone: datosZona[0], route: datosZona[1], camp: parseInt(event.target.className) - 1})
+        const nombre = sessionStorage.getItem("Usuario")
+        await RPGService.battle({NOMBRE: nombre, zone: datosZona[0], route: datosZona[1], camp: parseInt(event.target.className) - 1})
         .then(result => {
             if (result.data.message === "RESULTADOS"){
                 func(result.data.datosJugador)
