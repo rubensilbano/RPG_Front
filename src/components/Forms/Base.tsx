@@ -44,8 +44,8 @@ const Base = ({ datosNav, saveNombresHeroes }: any) => {
             // return
         };
         funcionCargarNombresHeroes()
-    }, [datosNav]);
-    // }, [saveNombresHeroes]);
+    // }, [datosNav]);
+    }, [saveNombresHeroes]);
 
     return (
         <div>
