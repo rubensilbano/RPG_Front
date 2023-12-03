@@ -10,16 +10,9 @@ const Route2 = ({ datosNav, cantidadRutas, datosZona, zonaRutaElegida, func }: a
     const handleClick = async (event: any) => {
         // ENVIA EL INDICE DE RUTA AL BACKEND PARA QUE SORTEE LOS CAMPAMENTOS,
             // Y REDIRIGE AL FORMULARIO CAMPAMENTOS
-
-        console.log(datosZona[0])
-        console.log(event.target.className)
-
         const nombre = sessionStorage.getItem("Usuario")
         await RPGService.route({NOMBRE: nombre, zone: datosZona[0], route: event.target.className})
         .then(result => {
-
-            console.log(result.data.message)
-
             if (result.data.message === "CAMPAMENTOS GENERADOS"){
                 // AHORA PUEDO GUARDAR LA ZONA ELEGIDA ANTERIORMENTE, JUNTO CON LA RUTA ELEGIDA
                 zonaRutaElegida([datosZona[0], event.target.className])
