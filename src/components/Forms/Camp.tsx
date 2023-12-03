@@ -55,6 +55,46 @@ const Camp = ({ datosNav, datosZona, func, getResultado }: any) => {
         }
         return elemento
     };
+    function TextoAccionNecesario() {
+        // DEVUELVE UN TEXTO MOSTRANDO LA CANTIDAD DE PUNTOS DE ACCION NECESARIOS
+        let puntosNecesarios = 1
+        switch (datosZona[0]) {
+            case 1:
+                puntosNecesarios = 2
+                break;
+            case 2:
+                puntosNecesarios = 2
+                break;
+            case 3:
+                puntosNecesarios = 3
+                break;
+            case 4:
+                puntosNecesarios = 3
+                break;
+            case 5:
+                puntosNecesarios = 3
+                break;
+            case 6:
+                puntosNecesarios = 4
+                break;
+            case 7:
+                puntosNecesarios = 4
+                break;
+            case 8:
+                puntosNecesarios = 4
+                break;
+            case 9:
+                puntosNecesarios = 5
+                break;
+            case 10:
+                puntosNecesarios = 5
+                break;
+            default:
+                puntosNecesarios = 1
+                break;
+        }
+        return <h4>{"Atacar un campamento requiere " + puntosNecesarios + " puntos de accion."}</h4>;
+    };
     const handleClickReturn = () => {
         navigate('/base');
     }
@@ -66,7 +106,9 @@ const Camp = ({ datosNav, datosZona, func, getResultado }: any) => {
                 <div className="bg-white p-3 rounded" style={{width : '40%'}}>
                     <h1 className='mb-3 text-primary'>Elegir campamento y pelear</h1>
                     <br />
-                    <h4>Atacar un campamento requiere 1 punto de accion.</h4>
+
+                    <TextoAccionNecesario />
+
                     <SelectorBotones indice={1} />
                     <SelectorBotones indice={2} />
                     <SelectorBotones indice={3} />

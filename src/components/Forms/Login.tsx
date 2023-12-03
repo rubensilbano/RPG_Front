@@ -9,7 +9,6 @@ import { FormEvent, useState } from "react";
 import * as RPGService from "./RPGService"
 import { useNavigate, Link } from "react-router-dom"
 
-// const Login = ({ func, saveNombresHeroes }: any) => {
 const Login = ({ func }: any) => {
     const [NOMBRE, setNombre] = useState("");
     const [CLAVE, setClave] = useState("");

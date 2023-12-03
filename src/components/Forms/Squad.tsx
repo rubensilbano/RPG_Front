@@ -10,7 +10,7 @@ import Navbar from '../Navbar/Navbar';
 
 // DECLARARLAS ASI PROVOCA UN FALLO, QUE IMPIDE EJECUTAR func
 // const Tabern = ({ datosNav }: any, { func }: any) => {
-const Squad = ({ datosNav, func, nombresHeroes }: any) => {
+const Squad = ({ datosNav, func }: any) => {
     const [listaHeroesEscuadron, setListaEscuadron] = useState<any>([]);
     const [listaHeroesColeccion, setListaColecc] = useState<any>([]);
     const navigate = useNavigate();
@@ -30,20 +30,15 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         const elementoHeroe = event.target.value.split(", ");
         if (elementoHeroe[0] === "true") {
             // REVISANDO SI HAY RANURAS VACIAS PARA AGREGAR HEROE
-            // const buscarIndice0 = (element: number) => element === 0;
             const buscarIndice0 = (element: [number, string]) => element[0] === 0;
             const index0 = listaHeroesEscuadron.findIndex(buscarIndice0);
             if (-1 < index0) {
-                // AGREGANDO HEROE AL ESCUADRON
-                // const buscarIndiceHeroe = (element: number) => element === parseInt(elementoHeroe[1]);
+                // AGREGANDO HEROE AL ESCUADRON. PRIMERO REVISA QUE NO ESTE REPETIDO.
                 const buscarIndiceHeroe = (element: [number, string]) => element[0] === parseInt(elementoHeroe[1]);
                 const indexHeroe = listaHeroesEscuadron.findIndex(buscarIndiceHeroe);
                 if (indexHeroe === -1) {
-
                     let arrayAux = listaHeroesEscuadron
-                    // arrayAux[index0] = parseInt(elementoHeroe[1])
-                    arrayAux[index0] = [parseInt(elementoHeroe[1]), elementoHeroe[2], elementoHeroe[3]]
-
+                    arrayAux[index0] = [parseInt(elementoHeroe[1]), elementoHeroe[2], elementoHeroe[3], elementoHeroe[4]]
                     setListaEscuadron(arrayAux)
                     navigate('/squad');
                 }
@@ -59,6 +54,8 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
             // ARMANDO LA LISTA DE HEROES EN EL ESCUADRON
             // INICIALMENTE SOLO COPIABA LA LISTA ESCUADRON, PERO AHORA QUIERO MOSTRAR NOMBRE Y NIVEL
             // setListaEscuadron(datosNav.ESCUADRON);
+            const nombresHeroes = ["Guerrero S", "Guerrero A", "Guerrero B", "Paladin S", "Paladin A", "Paladin B", "Ballestero S", "Ballestero A", "Ballestero B", "Ninja S", "Ninja A", "Ninja B", "Novicia S", "Novicia A", "Novicia B", "Maga S", "Maga A", "Maga B", "Excomulgado S", "Excomulgado A", "Excomulgado B", "Inquisidor S", "Inquisidor A", "Inquisidor B"]
+            const posicionHeroes = ["VANGUARDIA", "VANGUARDIA", "VANGUARDIA", "VANGUARDIA", "VANGUARDIA", "VANGUARDIA", "RETAGUARDIA", "RETAGUARDIA", "RETAGUARDIA", "CENTRO", "CENTRO", "CENTRO", "RETAGUARDIA", "RETAGUARDIA", "RETAGUARDIA", "RETAGUARDIA", "RETAGUARDIA", "RETAGUARDIA", "CENTRO", "CENTRO", "CENTRO", "CENTRO", "CENTRO", "CENTRO"]
             let listaAuxEscuadron = [];
             for (let i = 0; i < datosNav.ESCUADRON.length; i++) {
                 let listaAuxiliar = [];
@@ -67,8 +64,10 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
                     listaAuxiliar.push(nombresHeroes[datosNav.ESCUADRON[i] - 1])
                     const nivelHeroeActual = parseInt(datosNav["HEROE" + datosNav.ESCUADRON[i]]["NIVEL"]);
                     listaAuxiliar.push(nivelHeroeActual)
+                    listaAuxiliar.push(posicionHeroes[datosNav.ESCUADRON[i] - 1])
                 } else {
                     listaAuxiliar.push("Ranura VACIA")
+                    listaAuxiliar.push("")
                     listaAuxiliar.push("")
                 }
                 listaAuxEscuadron.push(listaAuxiliar)
@@ -83,7 +82,7 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
                     boolAux = true;
                 }
                 // ESTO SOLO ES ORIENTATIVO. PARA CARGAR IMAGENES VOY A NECESITAR UN BOOL
-                listaAux.push([boolAux.toString(), index, nombresHeroes[index - 1], nivelHeroeActual])
+                listaAux.push([boolAux.toString(), index, nombresHeroes[index - 1], nivelHeroeActual, posicionHeroes[index - 1]])
                 // listaAux.push([boolAux, index])
             };
             setListaColecc(listaAux);
@@ -91,13 +90,13 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
         funcionCargar()
     // });
     // CORRECCION PARA EL DEPLOY EN NETLIFY
-    }, [datosNav, nombresHeroes]);
+    }, [datosNav]);
     function BotonEscuadron(props: any) {
         // CREA UN BOTON ASIGNANDO EL INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION quitarHeroeEscuadron
         const indice = props.indice;
         let palabra = ""
         if (0 < indice[0]) {
-            palabra = indice[0] + ", " + indice[1] + ", Nivel:" + indice[2]
+            palabra = indice[0] + ", - " + indice[1] + ", Nivel:" + indice[2] + "/30, - " + indice[3]
         } else {
             palabra = "RANURA VACIA"
         }
@@ -110,11 +109,12 @@ const Squad = ({ datosNav, func, nombresHeroes }: any) => {
     function BotonColeccion(props: any) {
         // CREA UN BOTON ASIGNANDO VALIDACION E INDICE DE HEROE COMO className, Y ADJUNTANDO LA FUNCION alternarHeroeColeccion
         const indice = props.indice;
-        const palabra = indice[0] + ", " + indice[1] + ", - " + indice[2] + ", Nivel:" + indice[3]
+        const arrayPalabra = indice[0] + ", " + indice[1] + ", " + indice[2] + ", " + indice[3] + ", " + indice[4]
+        const palabraMostrada = indice[0] + ", " + indice[1] + ", - " + indice[2] + ", Nivel:" + indice[3] + "/30, - " + indice[4]
         return <button type="submit"
-        value={palabra}
+        value={arrayPalabra}
         onClick={alternarHeroeColeccion}
-        >{palabra}</button>;
+        >{palabraMostrada}</button>;
     };
     const handleClick = async (e: any) => {
         // ENVIA LA LISTA DE UNIDADES AL BACKEND, ESTE VALIDA LA LISTA PARA GUARDARLA COMO ESCUADRON

@@ -2,7 +2,7 @@
 
 // import React from 'react'
 // import {ChangeEvent, FormEvent, useState, useEffect} from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 // import * as RPG from "./RPGService"
 import { Link } from "react-router-dom"
 // import Navbar2 from '../Navbar/Navbar2';
@@ -10,7 +10,8 @@ import Navbar from '../Navbar/Navbar';
 // import { Jugador } from './Jugador'
 
 // const Base = (datosNav: Jugador) => {
-const Base = ({ datosNav, saveNombresHeroes }: any) => {
+// const Base = ({ datosNav, saveNombresHeroes }: any) => {
+const Base = ({ datosNav }: any) => {
 
     // NO CREO NECESITAR NADA DE ESTO
     // const [NOMBRE, setNombre] = useState("");
@@ -34,6 +35,7 @@ const Base = ({ datosNav, saveNombresHeroes }: any) => {
         .catch(err => console.log(err));
     };
     */
+/*
     useEffect(() => {
         // PARA EVITAR LA ADVERTENCIA EN EL build,
             // SE RECOMIENDA PONER LA DECLARACION DE LA FUNCION, DENTRO DEL MISMO useEffect.
@@ -46,7 +48,7 @@ const Base = ({ datosNav, saveNombresHeroes }: any) => {
         funcionCargarNombresHeroes()
     // }, [datosNav]);
     }, [saveNombresHeroes]);
-
+*/
     return (
         <div>
             <Navbar datosNav={datosNav} />

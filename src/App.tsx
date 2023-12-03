@@ -37,10 +37,6 @@ function App() {
   const getResultado = (respuesta: [any]) => {
     setResultado(respuesta);
   }
-  const [nombresHeroes, setNombres] = useState<[string]>();
-  const saveNombresHeroes = (respuesta: [string]) => {
-    setNombres(respuesta);
-  }
   
   return (
     <BrowserRouter>
@@ -66,11 +62,9 @@ function App() {
           {/* NECESITO RECIBIR UN STRING DESDE Login, Y CON EL ACTUALIZAR USANDO setUser */}
           <Route path='/' element={<Login
           func={hijoAPadre}
-          // saveNombresHeroes={saveNombresHeroes}
           />} />
           <Route path='/base' element={<Base
           datosNav={datosUsuario}
-          saveNombresHeroes={saveNombresHeroes}
           />} />
           <Route path='/tavern' element={<Tabern
           datosNav={datosUsuario}
@@ -79,7 +73,6 @@ function App() {
           <Route path='/squad' element={<Squad
           datosNav={datosUsuario}
           func={hijoAPadre}
-          nombresHeroes={nombresHeroes}
           />} />
           <Route path='/zone' element={<Zone
           datosNav={datosUsuario}

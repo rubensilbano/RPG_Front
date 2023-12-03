@@ -18,6 +18,14 @@ const Result = ({ datosNav, resultado }: any) => {
         // RECIBE NOMBRE, VIDA ACTUAL, Y VIDA MAXIMA
         return <h4>{props.props}</h4>
     };
+    function SelectorBotones() {
+        // DEVUELVE UN BOTON O TEXTO, DEPENDIENDO SI AUN QUEDAN CAMPAMENTOS EN ESTA EXPEDICION
+        let elemento = <button type="button" disabled>CONTINUAR</button>;
+        if (-1 < parseInt(datosNav.PROXCAMP)) {
+            elemento = <button type="submit" onClick={handleClickContinuar}>CONTINUAR</button>
+        }
+        return elemento
+    };
 
     return (
         <div>
@@ -44,7 +52,8 @@ const Result = ({ datosNav, resultado }: any) => {
                         })}
                     </div>
                     
-                    <button type="submit" onClick={handleClickContinuar}>CONTINUAR</button>
+                    {/* <button type="submit" onClick={handleClickContinuar}>CONTINUAR</button> */}
+                    <SelectorBotones />
                     <button type="submit" onClick={handleClickVolver}>VOLVER</button>
                 </div>
             </div>
