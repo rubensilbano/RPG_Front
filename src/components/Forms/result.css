@@ -1,0 +1,28 @@
+/* 
+ENFOCADA A LA ETIQUETA HTML. ESTO SE CONSIDERA GLOBAL
+body{
+}
+ENFOCADA A LA id
+#container{
+}
+ENFOCADA A LA class
+.article{
+} */
+.barrasProgresivas{
+    height: 15px;
+    border: 1px solid black;
+}
+.restante{
+    background-color: limegreen;
+}
+.total{
+    background-color: red;
+    width: 100px;
+}
+.expRestante{
+    background-color: yellow;
+}
+.expTotal{
+    background-color: black;
+    width: 100px;
+}

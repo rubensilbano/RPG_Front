@@ -1,0 +1,29 @@
+.navbar{
+    display: flex;
+    background-color: #444;
+    color: whitesmoke;
+}
+.container{
+    width: 100%;
+}
+.left{
+    padding-left: 15px;
+}
+.right{
+    padding-left: 15px;
+}
+.barrasNavBar{
+    height: 20px;
+}
+.expTotalNavBar{
+    background-color: black;
+    border: 1px solid white;
+    width: 200px;
+}
+.expRestanteNavBar{
+    background-color: white;
+}
+.icon{
+    max-width: 3rem;
+    max-height: 3rem;
+}

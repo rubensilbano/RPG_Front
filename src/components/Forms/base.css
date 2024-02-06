@@ -1,0 +1,38 @@
+.buttons{
+    display: block;
+}
+.btn-secondary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 1em;
+    color: goldenrod;
+    font-weight: 700;
+
+    background-color: blue;
+    border-style: solid;
+    border-width: 3px;
+    border-color: whitesmoke;
+    border-radius: 8px;
+    padding-bottom: 5px;
+
+    margin: 0.5em 0em;
+}
+.gift{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: goldenrod;
+    font-weight: 800;
+
+    float: right;
+    margin-right: 0.5em;
+    
+    background-color: red;
+    border-style: solid;
+    border-width: 3px;
+    border-color: whitesmoke;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}

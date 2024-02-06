@@ -1,40 +1,39 @@
 // import React from "react";
 // import { Link } from "react-router-dom";
 // import { useState, useEffect } from "react";
-import { useEffect } from "react";
+import monedasImg from "../../assets/images/Monedas.png";
+import accionImg from "../../assets/images/Action.png";
+import './Navbar.css';
 
 const Navbar = ({ datosNav }) => {
-  // const [cantHeroes, setCantHeroes] = useState(0);
-  useEffect(() => {
-    // AHORA LA CANTIDAD DE HEROES VA A SER UN VALOR EN EL REGISTRO.
-      // ESTO DEBIDO A QUE ME PARECE INCORRECTO REALIZAR ESTA SERIE DE CALCULOS EN EL FRONTEND Y BACKEND.
-
-    // CUENTA LA CANTIDAD DE HEROES
-    /*
-    let cantidad = 0;
-    for (let index = 1; index < 25; index++) {
-      const nivelHeroeActual = parseInt(datosNav["HEROE" + index]["NIVEL"]);
-      if (0 < nivelHeroeActual) {
-        cantidad += 1;
-      };
-    };
-    setCantHeroes(cantidad);
-    */
-  // });
-  // CORRECCION PARA EL DEPLOY EN NETLIFY
-  }, [datosNav]);
-  
+  function BarrasExp(props) {
+    // RECIBE EXPERIENCIA ACTUAL Y PROX NIVEL, MUESTRA DOS BARRAS
+    const experiencia = props.exp
+    const ancho = (parseInt(experiencia[0]) / parseInt(experiencia[1])) * 200
+    return <div>
+      <div className="barrasNavBar expTotalNavBar">
+        <div className="barrasNavBar expRestanteNavBar" style={{ width: ancho }}></div>
+      </div>
+    </div>
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
+      <div className="container left">
         <h3>{datosNav.NOMBRE}</h3>
-        <h3>{"Nivel: " + datosNav.NIVEL}</h3>
-        <h3>{datosNav.EXPERIENCIA + "/" + (50 * ((datosNav.NIVEL + 1)**2 + (datosNav.NIVEL + 1) - 2))}</h3>
+        <h3>{"Nivel: " + datosNav.NIVEL + "/100"}</h3>
+        <h3>{"Exp: " + datosNav.EXPERIENCIA + "/" + (50 * ((datosNav.NIVEL + 1)**2 + (datosNav.NIVEL + 1) - 2))}</h3>
+        <BarrasExp exp={[datosNav.EXPERIENCIA, (50 * ((datosNav.NIVEL + 1)**2 + (datosNav.NIVEL + 1) - 2))]} />
       </div>
-      <div className="container">
-        <h3>{datosNav.CANTIDAD + "/24"}</h3>
-        <h3>{datosNav.MONEDAS}</h3>
-        <h3>{datosNav.ACCION + "/100"}</h3>
+      <div className="container right">
+        <h3>{"Heroes: " + datosNav.CANTIDAD + "/24"}</h3>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img className="icon" src={monedasImg} alt="Monedas:" />
+          <h3 style={{ paddingLeft: 10 }}>{datosNav.MONEDAS}</h3>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img className="icon" src={accionImg} alt="Accion:" />
+          <h3>{datosNav.ACCION + "/100"}</h3>
+        </div>
       </div>
       
       {/* ESTO ES DEL ANTERIOR NAVBAR */}

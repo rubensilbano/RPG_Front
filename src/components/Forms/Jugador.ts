@@ -41,5 +41,6 @@ export interface Jugador {
     ARRAYRUTA: object;
     PROXCAMP: number;
     ZONARUTA: object;
+    ARRAYOBJETOS: object;
     _id?: string;
 }

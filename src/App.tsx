@@ -11,6 +11,8 @@ import Zone from './components/Forms/Zone'
 import Route2 from './components/Forms/Route2'
 import Camp from './components/Forms/Camp'
 import Result from './components/Forms/Result'
+import InventoryPreview from './components/Forms/InventoryPreview'
+import CustomHero from './components/Forms/CustomHero'
 import { Jugador } from './components/Forms/Jugador'
 
 // RECORDAR REVISAR EN LAS RUTAS BACKEND, Y EN CADA RUTA DONDE SE GUARDA CON findOneAndUpdate.
@@ -37,6 +39,14 @@ function App() {
   const getResultado = (respuesta: [any]) => {
     setResultado(respuesta);
   }
+  const [indiceHeroePersonalizar, setIndiceHeroePersonalizar] = useState<number>();
+  const setIndiceHeroe = (respuesta: number) => {
+    setIndiceHeroePersonalizar(respuesta);
+  }
+  // const [listaObjetosColeccion, setListaObjetosColeccion] = useState<[any]>();
+  // const setListaObjetos = (respuesta: [any]) => {
+  //   setListaObjetosColeccion(respuesta);
+  // }
   
   return (
     <BrowserRouter>
@@ -99,9 +109,19 @@ function App() {
           // func={hijoAPadre}
           // getResultado={getResultado}
           />} />
+          <Route path='/inventory' element={<InventoryPreview
+          datosNav={datosUsuario}
+          setIndiceHeroe={setIndiceHeroe}
+          // setListaObjetos={setListaObjetos}
+          />} />
 
-          {/* <Route path='/new-video' element={<VideoForm/>} />
-          <Route path='/update/:id' element={<VideoForm/>} /> */}
+          <Route path='/customize' element={<CustomHero
+          datosNav={datosUsuario}
+          indiceHeroePersonalizar={indiceHeroePersonalizar}
+          // listaObjetosColeccion={listaObjetosColeccion}
+          func={hijoAPadre}
+          />} />
+
         </Routes>
         {/* SIRVE PARA CREAR MENSAJES DE RESPUESTA EN EL FRONTEND.
         POR AHORA SE AGREGA PERO NO SE VERA HASTA QUE RECIBA LA ORDEN DE MOSTRARSE EN VideoForm.tsx */}

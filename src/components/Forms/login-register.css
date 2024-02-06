@@ -1,0 +1,19 @@
+.divLogin{
+    display: flex;
+    justify-content: center;
+    /* background-image: -o-linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555)); */
+}
+.divInside{
+    /* justify-content: center; */
+    text-align: center;
+    background-color: whitesmoke;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 40%;
+}
+.text-start{
+    margin-bottom: 5%;
+}
+.form-label{
+    display: block;
+}

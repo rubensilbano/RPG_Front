@@ -2,12 +2,10 @@
     // PARA ASI OPERAR UNICAMENTE SOBRE ESE REGISTRO
 // INCLUYE EJEMPLO DE TRASPASO DE PROPS HIJO A PADRE.
 
-// import React from 'react'
-// import {ChangeEvent, FormEvent, useState, useEffect} from "react";
 import { FormEvent, useState } from "react";
-
 import * as RPGService from "./RPGService"
 import { useNavigate, Link } from "react-router-dom"
+import './login-register.css';
 
 const Login = ({ func }: any) => {
     const [NOMBRE, setNombre] = useState("");
@@ -31,11 +29,11 @@ const Login = ({ func }: any) => {
 
     return (
         <div>
-            <div className="d-flex justify-content-center align-items-center text-center vh-100" style= {{backgroundImage : "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))"}}>
-                <div className="bg-white p-3 rounded" style={{width : '40%'}}>
-                    <h2 className='mb-3 text-primary'>Login</h2>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3 text-start">
+            <div className="divLogin" style={{backgroundImage : "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))"}}>
+                <div className="divInside">
+                    <h2>Login</h2>
+                    <form onSubmit={handleSubmit} style={{margin: "10% 5%"}}>
+                        <div className="text-start">
                             <label htmlFor="exampleInputEmail1" className="form-label">
                                 <strong>NOMBRE USUARIO</strong>
                             </label>
@@ -48,7 +46,7 @@ const Login = ({ func }: any) => {
                                 required
                             /> 
                         </div>
-                        <div className="mb-3 text-start">
+                        <div className="text-start">
                             <label htmlFor="exampleInputPassword1" className="form-label">
                                 <strong>CLAVE</strong>
                             </label>
@@ -61,11 +59,12 @@ const Login = ({ func }: any) => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Login</button>
+                        <button type="submit" className="btn btn-primary" style={{width: "90%"}}>Login</button>
                     </form>
-                    {/* TO add ' appostopee */}
-                    <p className='container my-2'>Don&apos;t have an account?</p>
-                    <Link to='/register' className="btn btn-secondary">Register</Link>
+                    <p style={{marginBlockEnd: "0.25em"}}>¿Aun no esta registrado?</p>
+                    <div style={{marginBlockEnd: "1em"}}>
+                        <Link to='/register' className="btn btn-secondary">Registrarse</Link>
+                    </div>
                 </div>
             </div>
         </div>

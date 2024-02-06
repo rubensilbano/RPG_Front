@@ -29,13 +29,13 @@ const RegisterForm = () => {
 
     return (
         <div>
-            <div className="d-flex justify-content-center align-items-center text-center vh-100" style= {{backgroundImage : "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))"}}>
-                <div className="bg-white p-3 rounded" style={{width : '40%'}}>
-                    <h2 className='mb-3 text-primary'>Register</h2>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3 text-start">
+            <div className="divLogin" style= {{backgroundImage : "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))"}}>
+                <div className="divInside">
+                    <h2>Register</h2>
+                    <form onSubmit={handleSubmit} style={{margin: "10% 5%"}}>
+                        <div className="text-start">
                             <label htmlFor="exampleInputEmail1" className="form-label">
-                                <strong >NOMBRE USUARIO</strong>
+                                <strong >NUEVO NOMBRE USUARIO</strong>
                             </label>
                             <input 
                                 type="NOMBRE"
@@ -44,11 +44,11 @@ const RegisterForm = () => {
                                 id="exampleInputname" 
                                 onChange={(event) => setNombre(event.target.value)}
                                 required
-                            /> 
+                            />
                         </div>
-                        <div className="mb-3 text-start">
+                        <div className="text-start">
                             <label htmlFor="exampleInputPassword1" className="form-label">
-                                <strong>CLAVE</strong>
+                                <strong>NUEVA CLAVE</strong>
                             </label>
                             <input 
                                 type="CLAVE" 
@@ -59,10 +59,12 @@ const RegisterForm = () => {
                                 required
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Register</button>
+                        <button type="submit" className="btn btn-primary" style={{width: "90%"}}>Crear Usuario</button>
                     </form>
-                    <p className='container my-2'>Already have an account ?</p>
-                    <Link to='/' className="btn btn-secondary">Login</Link>
+                    <p style={{marginBlockEnd: "0.25em"}}>¿Esta registrado?</p>
+                    <div style={{marginBlockEnd: "1em"}}>
+                        <Link to='/' className="btn btn-secondary">Login</Link>
+                    </div>
                 </div>
             </div>
         </div>
